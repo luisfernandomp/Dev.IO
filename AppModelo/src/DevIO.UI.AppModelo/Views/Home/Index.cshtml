@@ -1,4 +1,9 @@
-﻿<div class="text-center">
+﻿@using DevIO.UI.AppModelo.Data
+@inject IPedidoRepository pedidoRepository
+
+<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@pedidoRepository.ObterPedido().Id
