@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DevIO.UI.AppModelo.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,8 @@ namespace DevIO.UI.AppModelo.Data
         {
 
         }
+
+        public DbSet<Aluno> Alunos { get; set; } 
+
     }
 }

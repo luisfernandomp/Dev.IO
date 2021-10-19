@@ -1,4 +1,5 @@
 ﻿using DevIO.UI.AppModelo.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,6 @@ namespace DevIO.UI.AppModelo.Controllers
          
          */
 
-
-
         private readonly IPedidoRepository _pedidoRepository;
 
         public HomeController(IPedidoRepository pedidoRepository)
@@ -31,7 +30,25 @@ namespace DevIO.UI.AppModelo.Controllers
             _pedidoRepository = pedidoRepository;
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult Secret()
+        {
+            return View();
+        }
 
+        [Authorize(Policy = "PodeExcluir")]
+        public IActionResult SecretClaim()
+        {
+            return View("Secret");
+        }
+
+        [Authorize(Policy = "PodeEscrever")]
+        public IActionResult SecretClaimGravar()
+        {
+            return View("Secret");
+        }
+
+        [Authorize]
         public IActionResult Index()
         {
             var pedido = _pedidoRepository.ObterPedido();
