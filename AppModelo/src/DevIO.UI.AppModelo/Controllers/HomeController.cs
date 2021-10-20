@@ -1,4 +1,5 @@
 ﻿using DevIO.UI.AppModelo.Data;
+using DevIO.UI.AppModelo.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -44,6 +45,12 @@ namespace DevIO.UI.AppModelo.Controllers
 
         [Authorize(Policy = "PodeEscrever")]
         public IActionResult SecretClaimGravar()
+        {
+            return View("Secret");
+        }
+
+        [ClaimsAuthorize("Produtos", "Ler")]
+        public IActionResult ClaimsCustom()
         {
             return View("Secret");
         }
